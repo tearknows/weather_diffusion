@@ -2,9 +2,9 @@ data:
     dataset: "AllWeather"
     image_size: 64
     channels: 3
-    num_workers: 32
-    data_dir: "E:\\deeplearning\\last\\WeatherDiffusion"
-    #/gemini/data-1
+    num_workers: 32 #32
+    # 数据存放路径
+    data_dir: "E:\\deeplearning\\weather_diffusion"
     conditional: True
 
 model:
@@ -27,15 +27,17 @@ diffusion:
 
 training:
     patch_n: 16
-    batch_size: 16
-    n_epochs: 2 
+    batch_size: 4
+    n_epochs: 1775 
     # 1775
     n_iters: 2000000
-    snapshot_freq: 10000
+    # 记录模型频率
+    snapshot_freq: 1000
+    # 验证模型频率
     validation_freq: 10000
 
 sampling:
-    batch_size: 4
+    batch_size: 16
     last_only: True
 
 optim:

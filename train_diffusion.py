@@ -31,6 +31,9 @@ def parse_args_and_config():
     # 初始化训练的随机种子
     parser.add_argument('--seed', default=61, type=int, metavar='N',
                         help='Seed for initializing training (default: 61)')
+# 改动
+    parser.add_argument("--train_dir", default="/gemini/output")
+    
     args = parser.parse_args()
 
     # 从配置文件中加载配置
@@ -58,7 +61,7 @@ def main():
 
     # 设置设备
     # setup device to run
-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    device = torch.device("cuda:0") # if torch.cuda.is_available() else torch.device("cpu")
     print("Using device: {}".format(device))
     config.device = device
 

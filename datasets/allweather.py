@@ -24,11 +24,13 @@ class AllWeather:
             print("=> evaluating outdoor rain-fog test set...")
             path = os.path.join(self.config.data.data_dir, 'data', 'outdoor-rain')
             filename = 'test1.txt'
-        else:   # snow
+        else:
+            # 测试集，路径需要修改
             print("=> evaluating snowtest100K-L...")
-            path = os.path.join(self.config.data.data_dir, 'data', 'snow100k')
+            path = os.path.join(self.config.data.data_dir, 'data', 'snow')
             filename = 'snowtest100k_L.txt'
 
+        # 训练集，路径需要修改
         train_dataset = AllWeatherDataset(os.path.join(self.config.data.data_dir, 'data', 'allweather'),
                                           n=self.config.training.patch_n,
                                           patch_size=self.config.data.image_size,

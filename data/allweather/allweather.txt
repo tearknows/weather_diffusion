@@ -1,2 +1,3 @@
-input/city_read_14216.jpg
-input/im_0487_s95_a04.png
+input/0_rain.png
+input/1_rain.png
+input/2_rain.png

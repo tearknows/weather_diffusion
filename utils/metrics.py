@@ -2,6 +2,35 @@ import cv2
 import numpy as np
 import torch
 
+import lpips 
+import torchvision.models as models
+from torchvision.models.vgg import VGG16_Weights
+
+
+def calculate_lpips(img1,img2):
+
+    # 加载预训练的LPIPS模型
+    lpips_model = lpips.LPIPS(net="vgg")
+    img1 = lpips.im2tensor(lpips.load_image(img1))
+    img2 = lpips.im2tensor(lpips.load_image(img2))
+    _,_,img1_width,img1_height=img1.size()
+    _,_,img2_width,img2_height=img2.size()
+
+    # 将图像转换为PyTorch的Tensor格式  .permute(2, 0, 1)
+    image1_tensor = torch.tensor(np.array(img1)).squeeze(0).permute(1, 2, 0).float()
+    image2_tensor = torch.tensor(np.array(img2)).squeeze(0).permute(1, 2, 0).float()
+
+    image1_np = image1_tensor.numpy()
+    image2_np = image2_tensor.numpy()
+
+    res_resized = cv2.resize(image1_np, (img2_height,img2_width))
+
+    image1_tensor_resized = torch.from_numpy(res_resized).permute(2,0,1).unsqueeze(0)
+    current_lpips_distance = lpips_model.forward(image1_tensor_resized, img2)
+
+    return current_lpips_distance.item()
+
+
 # This script is adapted from the following repository: https://github.com/JingyunLiang/SwinIR
 # 这个文件用来计算检测指标的函数，psnr，ssim
 

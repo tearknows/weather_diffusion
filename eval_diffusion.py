@@ -31,7 +31,7 @@ def parse_args_and_config():
     parser.add_argument("--test_set", type=str, default='raindrop',
                         help="restoration test set options: ['raindrop', 'snow', 'rainfog']")
     # 添加命令行参数，指定保存恢复图像的位置，默认为 'results/images/'
-    parser.add_argument("--image_folder", default='results/images/', type=str,
+    parser.add_argument("--image_folder", default='/gemini/output', type=str,
                         help="Location to save restored images")
     # 添加命令行参数，指定用于初始化训练的随机数生成的种子，默认为 61
     parser.add_argument('--seed', default=61, type=int, metavar='N',
@@ -67,6 +67,7 @@ def main():
     print("Using device: {}".format(device))
     config.device = device
 
+# 测试只能用一个GPU
     if torch.cuda.is_available():
         print('Note: Currently supports evaluations (restoration) when run only on a single GPU!')
 

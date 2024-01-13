@@ -3,7 +3,7 @@ data:
     image_size: 128
     channels: 3
     num_workers: 32
-    data_dir: "/scratch/ozan/"
+    data_dir: "E:\\deeplearning\\weather_diffusion"
     conditional: True
 
 model:
