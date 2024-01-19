@@ -1,3 +1,4 @@
+基于Restoring Vision in Adverse Weather Conditions with Patch-Based Denoising Diffusion Models改进作品，已成功改进增加了去雾效果，后续尝试提高训练推理速度，增加多模态
 训练用train_diffusion.py
 测试用eval_diffusion.py
 计算指标使用calculate_psnr_ssim（可计算PSNR,SSIM,LPIPS）
